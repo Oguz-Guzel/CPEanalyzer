@@ -112,9 +112,10 @@ class SiStripHitResolFromCalibTree : public ConditionDBWriter<SiStripBadStrip> {
     float calcPhi(float x, float y);
 
     edm::Service<TFileService> fs;
-    SiStripDetInfoFileReader* reader;
+    // SiStripDetInfoFileReader* reader;
+    SiStripDetInfo detInfo_;
     edm::FileInPath FileInPath_;
-    SiStripQuality* quality_;
+    SiStripQuality* quality_ ;
     std::unique_ptr<SiStripBadStrip> getNewObject() override;
     
     TTree* CalibTree;
@@ -199,12 +200,14 @@ SiStripHitResolFromCalibTree::SiStripHitResolFromCalibTree(const edm::ParameterS
   _tkMapMin = conf.getUntrackedParameter<double>("TkMapMin",0.9);
   _effPlotMin = conf.getUntrackedParameter<double>("EffPlotMin",0.9);
   _title = conf.getParameter<std::string>("Title"); 
-  reader = new SiStripDetInfoFileReader(FileInPath_.fullPath());
+  // reader = new SiStripDetInfoFileReader(FileInPath_.fullPath());
+  detInfo_ = SiStripDetInfoFileReader::read(FileInPath_.fullPath());
   
   nTEClayers = 9; // number of wheels
   if(_showRings) nTEClayers = 7; // number of rings
   
-  quality_ = new SiStripQuality;
+  //  quality_ = new SiStripQuality;
+  quality_ = new SiStripQuality(detInfo_);
 }
 
 SiStripHitResolFromCalibTree::~SiStripHitResolFromCalibTree() { }
@@ -816,7 +819,8 @@ void SiStripHitResolFromCalibTree::algoAnalyze(const edm::Event& e, const edm::E
       percentage+=range;
     }
     if(percentage!=0)
-      percentage/=128.*reader->getNumberOfApvsAndStripLength(detid).first;
+      // percentage/=128.*reader->getNumberOfApvsAndStripLength(detid).first;
+      percentage/=128.*detInfo_.getNumberOfApvsAndStripLength(detid).first;
     if(percentage>1)
       edm::LogError("SiStripQualityStatistics") <<  "PROBLEM detid " << detid << " value " << percentage<< std::endl; 
   }
@@ -1155,7 +1159,8 @@ void SiStripHitResolFromCalibTree::makeSQLite() {
   std::vector<unsigned int> BadStripList;
   unsigned short NStrips;
   unsigned int id1;
-  SiStripQuality* pQuality = new SiStripQuality;
+  //  SiStripQuality* pQuality = new SiStripQuality;
+  SiStripQuality* pQuality = new SiStripQuality(detInfo_);
   //This is the list of the bad strips, use to mask out entire APVs
   //Now simply go through the bad hit list and mask out things that
   //are bad!
@@ -1163,7 +1168,8 @@ void SiStripHitResolFromCalibTree::makeSQLite() {
   for(it = BadModules.begin(); it != BadModules.end(); it++) {
     //We need to figure out how many strips are in this particular module
     //To Mask correctly!
-    NStrips=reader->getNumberOfApvsAndStripLength((*it).first).first*128;
+    // NStrips=reader->getNumberOfApvsAndStripLength((*it).first).first*128;
+    NStrips=detInfo_.getNumberOfApvsAndStripLength((*it).first).first*128;
     cout << "Number of strips module " << (*it).first << " is " << NStrips << endl;
     BadStripList.push_back(pQuality->encode(0,NStrips,0));
     //Now compact into a single bad module
@@ -1606,7 +1612,8 @@ float SiStripHitResolFromCalibTree::calcPhi(float x, float y) {
 
 void SiStripHitResolFromCalibTree::SetBadComponents(int i, int component,SiStripQuality::BadComponent& BC, std::stringstream ssV[4][19], int NBadComponent[4][19][4]){
  
-  int napv=reader->getNumberOfApvsAndStripLength(BC.detid).first;
+  // int napv=reader->getNumberOfApvsAndStripLength(BC.detid).first;
+  int napv=detInfo_.getNumberOfApvsAndStripLength(BC.detid).first;
  
   ssV[i][component] << "\n\t\t " 
 		    << BC.detid 
