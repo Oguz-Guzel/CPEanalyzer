@@ -1,4 +1,5 @@
 <use   name="CommonTools/TrackerMap"/>
+<use   name="CalibTracker/SiStripCommon"/>
 <use   name="CommonTools/UtilAlgos"/>
 <use   name="CondCore/DBOutputService"/>
 <use   name="CondFormats/SiStripObjects"/>
