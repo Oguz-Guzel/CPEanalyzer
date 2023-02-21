@@ -4,7 +4,8 @@ echo "Hello Rucio Users !"
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 echo "setup your VOMS-PROXY !"
 voms-proxy-init -voms cms -rfc -valid 192:00
-source /cvmfs/cms.cern.ch/rucio/setup.sh
+# source /cvmfs/cms.cern.ch/rucio/setup.sh
+source /cvmfs/cms.cern.ch/rucio/setup-py3.sh
 export RUCIO_ACCOUNT=kjaffel  # Or your CERN username if it differs
 echo """
     - You can then issue the command  
