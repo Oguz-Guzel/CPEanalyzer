@@ -23,7 +23,7 @@ In order to allow parallelisation and fast iterations, a private skim of files i
 ### Launch a Test :
 `configs\alcareco_localtest.yml` will be used by default as an input:
 ```python
-python CPE4slurm.py --isTest --task hitresolution -o mytestDIR
+python3 CPE4slurm.py --isTest --task hitresolution -o mytestDIR
 ```
 - ``-o``/ ``--output``:  Output directory 
 - ``-y``/``--yml``    :  YAML file that include your AlcaReco samples should be saved in: configs/
