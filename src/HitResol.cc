@@ -222,8 +222,7 @@ void HitResol::beginJob(){
 
 void HitResol::analyze(const edm::Event& e, const edm::EventSetup& es){
   //Retrieve tracker topology from geometry
-  // edm::ESHandle<TrackerTopology> tTopoHandle;
-  edm::ESGetToken<TrackerTopology> tTopoHandle;
+  edm::ESHandle<TrackerTopology> tTopoHandle;
   es.get<TrackerTopologyRcd>().get(tTopoHandle);
   const TrackerTopology* const tTopo = tTopoHandle.product();
 
