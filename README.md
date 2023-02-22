@@ -5,8 +5,8 @@ Method used from CMSSW - StripCPEfromTrackAngle; Takes the track angle estimate 
 This repository is based on [Hit resolution repository](https://gitlab.cern.ch/coldham/hitresolutionproject/-/tree/master) and large part of the code have been re-used for CPE studies purpose on the top of [CPEanalayser](https://github.com/delaere/cmssw/tree/CPE_from-CMSSW_10_6_2/UserCode/CPEanalyzer)!
 ## Recipe for your favorite CMSSW version:[current cmssw working version : 11_3_0]
 ```bash
- cmsrel CMSSW_11_3_0
- cd CMSSW_11_3_0/src
+ cmsrel CMSSW_12_4_12
+ cd CMSSW_12_4_12/src
  # specific to ingrid, https://github.com/kjaffel/ZA_FullAnalysis#environment-setup-always- 
  cms_env 
  cmsenv
