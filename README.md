@@ -12,7 +12,7 @@ This repository is based on [Hit resolution repository](https://gitlab.cern.ch/c
  cmsenv
  mkdir SiStripCPE
  cd SiStripCPE
- https://github.com/Oguz-Guzel/CPEanalyzer.git
+ git clone https://github.com/Oguz-Guzel/CPEanalyzer.git
  # https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideScram
  scram b 
 ```
