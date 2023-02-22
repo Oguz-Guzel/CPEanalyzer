@@ -1,6 +1,6 @@
 samples:
   SiStripCalMinBias_Express_Run2022G:
-    db: /store/express/Run2022F/StreamExpress/ALCARECO/SiStripCalMinBias-Express-v1/000/362/154/00000/6a454507-dd81-4846-9152-c06bf7677a68.root
+    db: /store/express/Run2022G/StreamExpress/ALCARECO/SiStripCalMinBias-Express-v1/000/362/759/00000/9f733ca3-9ddb-42b7-ae35-26dafe25e0c6.root
     era: '2022'
     type: data
   # SiStripCalMinBias_RelValZMM_14_HI_2021:
