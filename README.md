@@ -3,7 +3,7 @@ Cluster Parameter Estimator: algorithm used to determine the position and errors
 Method used from CMSSW - StripCPEfromTrackAngle; Takes the track angle estimate into account when applying the Lorentz angle and back plane correction, and uses a resolution parameterization as a function of the expected cluster width. 
 
 This repository is based on [Hit resolution repository](https://gitlab.cern.ch/coldham/hitresolutionproject/-/tree/master) and large part of the code have been re-used for CPE studies purpose on the top of [CPEanalayser](https://github.com/delaere/cmssw/tree/CPE_from-CMSSW_10_6_2/UserCode/CPEanalyzer)!
-## Recipe for your favorite CMSSW version:[current cmssw working version : 11_3_0]
+## Recipe for your favorite CMSSW version:[current cmssw working version : 12_4_12]
 ```bash
  cmsrel CMSSW_12_4_12
  cd CMSSW_12_4_12/src
@@ -12,7 +12,7 @@ This repository is based on [Hit resolution repository](https://gitlab.cern.ch/c
  cmsenv
  mkdir SiStripCPE
  cd SiStripCPE
- git clone https://github.com/kjaffel/CPEanalyzer
+ https://github.com/Oguz-Guzel/CPEanalyzer.git
  # https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideScram
  scram b 
 ```
