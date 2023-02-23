@@ -230,7 +230,7 @@ void SiStripHitResolFromCalibTree::algoAnalyze(const edm::Event& e, const edm::E
   
   //Retrieve tracker topology from geometry
   edm::ESHandle<TrackerTopology> tTopoHandle;
-  edm::ESGetToken<tTopoHandle.product(), tTopoHandle> token1_;
+  edm::ESGetToken<TrackerTopology, tTopoHandle> token1_;
   c.get<TrackerTopologyRcd>().get(tTopoHandle);
   const TrackerTopology* const tTopo = tTopoHandle.product();
 
