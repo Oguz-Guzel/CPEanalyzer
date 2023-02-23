@@ -96,7 +96,6 @@ HitResol::HitResol(const edm::ParameterSet& conf):
                    //const SiStripConfObject& confObj,
                    //const SiStripLatency& latency):
   //StripCPE(conf, mag, geom, lorentz, backPlaneCorrection, confObj, latency),
-  tTopoHandle(esConsumes()),
   scalerToken_( consumes< LumiScalersCollection >(conf.getParameter<edm::InputTag>("lumiScalers")) ),
   commonModeToken_( mayConsume< edm::DetSetVector<SiStripRawDigi> >(conf.getParameter<edm::InputTag>("commonMode")) ),
   combinatorialTracks_token_( consumes< reco::TrackCollection >(conf.getParameter<edm::InputTag>("combinatorialTracks")) ),
