@@ -234,7 +234,6 @@ void SiStripHitResolFromCalibTree::algoAnalyze(const edm::Event& e, const edm::E
   // c.get<TrackerTopologyRcd>().get(tTopoHandle);
   // const TrackerTopology* const tTopo = tTopoHandle.product();
   const TrackerTopology* const tTopo = &c.getData(tTopoHandle);
-  tTopoHandle = esConsumes();
 
   // read bad modules to mask
   ifstream badModules_file;
