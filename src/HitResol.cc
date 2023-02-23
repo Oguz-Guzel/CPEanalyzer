@@ -96,6 +96,7 @@ HitResol::HitResol(const edm::ParameterSet& conf):
                    //const SiStripConfObject& confObj,
                    //const SiStripLatency& latency):
   //StripCPE(conf, mag, geom, lorentz, backPlaneCorrection, confObj, latency),
+  tTopoHandle(esConsumes()),
   scalerToken_( consumes< LumiScalersCollection >(conf.getParameter<edm::InputTag>("lumiScalers")) ),
   commonModeToken_( mayConsume< edm::DetSetVector<SiStripRawDigi> >(conf.getParameter<edm::InputTag>("commonMode")) ),
   combinatorialTracks_token_( consumes< reco::TrackCollection >(conf.getParameter<edm::InputTag>("combinatorialTracks")) ),
@@ -222,9 +223,11 @@ void HitResol::beginJob(){
 
 void HitResol::analyze(const edm::Event& e, const edm::EventSetup& es){
   //Retrieve tracker topology from geometry
-  edm::ESHandle<TrackerTopology> tTopoHandle;
-  es.get<TrackerTopologyRcd>().get(tTopoHandle);
-  const TrackerTopology* const tTopo = tTopoHandle.product();
+  //edm::ESHandle<TrackerTopology> tTopoHandle;
+  edm::ESGetToken<TrackerTopology, TrackerTopologyRcd> tTopoHandle;
+  // es.get<TrackerTopologyRcd>().get(tTopoHandle);
+  //const TrackerTopology* const tTopo = tTopoHandle.product();
+  const TrackerTopology* const tTopo = &es.getData(tTopoHandle);
 
   //  bool DEBUG = false;
   LogDebug("SiStripHitResolution:HitResol")  << "beginning analyze from HitResol" << endl;
